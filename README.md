@@ -1,6 +1,6 @@
 # kyoto charts
 
-SSR Charts as a Component. Prototyped for using in `kyoto` pages.  
+SSR Charts as a Components. Prototyped for using in `kyoto` pages.  
 Kyoto charts are using `go-chart` under the hood to generate charts on server side and include rendered result into component's layout.
 
 ## Requirements
