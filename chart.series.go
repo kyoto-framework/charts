@@ -1,9 +1,11 @@
 package ktc
 
 import (
+	"encoding/json"
 	"time"
 
 	"github.com/wcharczuk/go-chart/v2"
+	"github.com/yuriizinets/go-common"
 	"github.com/yuriizinets/kyoto"
 )
 
@@ -31,6 +33,21 @@ type ContinuousSeries struct {
 	ColorStroke [4]uint8
 }
 
+func (s ContinuousSeries) Type() string {
+	return "ContinuousSeries"
+}
+
+func (s ContinuousSeries) MarshalJSON() ([]byte, error) {
+	return json.Marshal(map[string]interface{}{
+		"Type":        s.Type(),
+		"Name":        s.Name,
+		"XValues":     s.XValues,
+		"YValues":     s.YValues,
+		"ColorFill":   s.ColorFill,
+		"ColorStroke": s.ColorStroke,
+	})
+}
+
 type TimeSeries struct {
 	Name    string
 	XValues []time.Time
@@ -40,14 +57,57 @@ type TimeSeries struct {
 	ColorStroke [4]uint8
 }
 
+func (s TimeSeries) Type() string {
+	return "TimeSeries"
+}
+
+func (s TimeSeries) MarshalJSON() ([]byte, error) {
+	return json.Marshal(map[string]interface{}{
+		"Type":        s.Type(),
+		"Name":        s.Name,
+		"XValues":     s.XValues,
+		"YValues":     s.YValues,
+		"ColorFill":   s.ColorFill,
+		"ColorStroke": s.ColorStroke,
+	})
+}
+
 type SMASeries struct {
 	Name        string
 	InnerSeries interface{}
 }
 
+func (s SMASeries) Type() string {
+	return "SMASeries"
+}
+
+func (s SMASeries) MarshalJSON() ([]byte, error) {
+	inner, err := json.Marshal(s.InnerSeries)
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(map[string]interface{}{
+		"Type":        s.Type(),
+		"Name":        s.Name,
+		"InnerSeries": string(inner),
+	})
+}
+
 type AnnotationsSeries struct {
 	Name        string
 	Annotations []Annotation
+}
+
+func (s AnnotationsSeries) Type() string {
+	return "AnnotationsSeries"
+}
+
+func (s AnnotationsSeries) MarshalJSON() ([]byte, error) {
+	return json.Marshal(map[string]interface{}{
+		"Type":        s.Type(),
+		"Name":        s.Name,
+		"Annotations": s.Annotations,
+	})
 }
 
 type Annotation struct {
@@ -79,7 +139,12 @@ func (c *ChartSeries) build() ImplementsGoChart {
 	}
 	// Build and return chart
 	return chart.Chart{
-		Title:  c.Title,
+		Title: c.Title,
+		Background: chart.Style{
+			Padding: chart.Box{
+				Top: 40,
+			},
+		},
 		Width:  c.Size.GetWidth(),
 		Height: c.Size.GetHeight(),
 		Series: series,
@@ -107,9 +172,24 @@ func (c *ChartSeries) build() ImplementsGoChart {
 }
 
 func (c *ChartSeries) buildSeries(s interface{}) chart.Series {
-	switch _s := s.(type) {
+	// Cast series to string to avoid behavior variations
+	sstr := ""
+	if _s, ok := s.(string); ok {
+		sstr = _s
+	} else {
+		sstr = common.JSONDumps(s)
+	}
+	// Cast series to map for details
+	smap := map[string]interface{}{}
+	common.JSONLoads(sstr, &smap)
+	// Extract series type
+	stype := smap["Type"].(string)
+	// Build series, depending on type
+	switch stype {
 	// Continuous Series
-	case ContinuousSeries:
+	case "ContinuousSeries":
+		var _s ContinuousSeries
+		common.JSONLoads(sstr, &_s)
 		style := chart.Style{}
 		style.FillColor = colorChartFromUint(_s.ColorFill)
 		style.StrokeColor = colorChartFromUint(_s.ColorStroke)
@@ -120,7 +200,9 @@ func (c *ChartSeries) buildSeries(s interface{}) chart.Series {
 			Style:   style,
 		}
 	// Time Series
-	case TimeSeries:
+	case "TimeSeries":
+		var _s TimeSeries
+		common.JSONLoads(sstr, &_s)
 		style := chart.Style{}
 		style.FillColor = colorChartFromUint(_s.ColorFill)
 		style.StrokeColor = colorChartFromUint(_s.ColorStroke)
@@ -130,13 +212,17 @@ func (c *ChartSeries) buildSeries(s interface{}) chart.Series {
 			YValues: _s.YValues,
 			Style:   style,
 		}
-	case SMASeries:
+	case "SMASeries":
+		var _s SMASeries
+		common.JSONLoads(sstr, &_s)
 		return chart.SMASeries{
 			Name:        _s.Name,
 			InnerSeries: c.buildSeries(_s.InnerSeries).(chart.ValuesProvider),
 		}
 	// Annotations Series
-	case AnnotationsSeries:
+	case "AnnotationsSeries":
+		var _s AnnotationsSeries
+		common.JSONLoads(sstr, &_s)
 		style := chart.Style{}
 		values := []chart.Value2{}
 		for _, a := range _s.Annotations {

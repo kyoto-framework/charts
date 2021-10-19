@@ -35,8 +35,8 @@ func (s *Size) GetHeight() int {
 }
 
 func (r *Size) Resize(width, height int) {
-	r.MinWidth = width
-	r.MinHeight = height
+	r.Width = width
+	r.Height = height
 	// Min values align
 	if r.Width < r.MinWidth {
 		r.Width = r.MinWidth

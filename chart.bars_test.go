@@ -36,9 +36,6 @@ func (p *TestChartBarsPage) Init() {
 	p.Bars = kyoto.RegC(p, &ChartBars{
 		Title: "Bars chart",
 		Bars:  bars,
-		Size: Size{
-			Height: 400,
-		},
 		Render: Render{
 			Adaptive: true,
 		},
@@ -46,9 +43,6 @@ func (p *TestChartBarsPage) Init() {
 	p.BarsColored = kyoto.RegC(p, &ChartBars{
 		Title: "Colored bars chart",
 		Bars:  barsColored,
-		Size: Size{
-			Height: 400,
-		},
 		Render: Render{
 			Adaptive: true,
 		},

@@ -2,6 +2,8 @@ github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 h1:DACJavvAHhabrF0
 github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0/go.mod h1:E/TSTwGwJL78qG/PmXZO1EjYhfJinVAhrmmHX6Z8B9k=
 github.com/wcharczuk/go-chart/v2 v2.1.0 h1:tY2slqVQ6bN+yHSnDYwZebLQFkphK4WNrVwnt7CJZ2I=
 github.com/wcharczuk/go-chart/v2 v2.1.0/go.mod h1:yx7MvAVNcP/kN9lKXM/NTce4au4DFN99j6i1OwDclNA=
+github.com/yuriizinets/go-common v1.13.0 h1:2lGTXW072Swu1Oebgq4px6de/On8rj8km1mQnOQLN5A=
+github.com/yuriizinets/go-common v1.13.0/go.mod h1:e8qs8TpGTKavcMojePH+/p4681LttzNEYjNMvKnvvQg=
 github.com/yuriizinets/kyoto v0.0.0-20211017170019-16887ac790b5 h1:nNob5Bo9IHu9fqMSq97qtPr/h6YPQu3bbrGYhTLdL4Q=
 github.com/yuriizinets/kyoto v0.0.0-20211017170019-16887ac790b5/go.mod h1:5mMUtxQ1AdsJNmpDih3NQC4PJWq1kbqx9IrRs+06ZRg=
 golang.org/x/image v0.0.0-20200927104501-e162460cd6b5 h1:QelT11PB4FXiDEXucrfNckHoFxwt8USGY1ajP1ZF5lM=

@@ -86,7 +86,7 @@ func (p *TestChartSeriesPage) Init() {
 			continuousSeries,
 		},
 		Size: Size{
-			Height: 400,
+			MinWidth: 500,
 		},
 		XAxis: "Axis X",
 		YAxis: "Axis Y",
@@ -101,7 +101,7 @@ func (p *TestChartSeriesPage) Init() {
 			smaSeries,
 		},
 		Size: Size{
-			Height: 400,
+			MinWidth: 500,
 		},
 		XAxis: "Axis X",
 		YAxis: "Axis Y",
@@ -115,7 +115,7 @@ func (p *TestChartSeriesPage) Init() {
 			timeSeries,
 		},
 		Size: Size{
-			Height: 400,
+			MinWidth: 500,
 		},
 		XAxis: "Axis X (Time)",
 		YAxis: "Axis Y",
@@ -130,7 +130,7 @@ func (p *TestChartSeriesPage) Init() {
 			timeSeries2,
 		},
 		Size: Size{
-			Height: 400,
+			MinWidth: 500,
 		},
 		XAxis: "Axis X (Time)",
 		YAxis: "Axis Y",
@@ -145,7 +145,7 @@ func (p *TestChartSeriesPage) Init() {
 			timeSeriesColored2,
 		},
 		Size: Size{
-			Height: 400,
+			MinWidth: 500,
 		},
 		XAxis: "Axis X (Time)",
 		YAxis: "Axis Y",
@@ -160,7 +160,7 @@ func (p *TestChartSeriesPage) Init() {
 			annotationsSeries,
 		},
 		Size: Size{
-			Height: 400,
+			MinWidth: 500,
 		},
 		XAxis: "Axis X",
 		YAxis: "Axis Y",

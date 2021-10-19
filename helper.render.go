@@ -42,8 +42,8 @@ func (r *Render) Render(c ImplementsGoChart) {
 			panic(err)
 		}
 		out := buffer.String()
-		out = strings.ReplaceAll(out, fmt.Sprintf(`width=%d`, c.GetWidth()), `width="100%"`)
-		out = strings.ReplaceAll(out, fmt.Sprintf(`height=%d`, c.GetHeight()), ``)
+		out = strings.ReplaceAll(out, fmt.Sprintf(`width="%d"`, c.GetWidth()), `width="100%"`)
+		out = strings.ReplaceAll(out, fmt.Sprintf(`height="%d"`, c.GetHeight()), ``)
 		out = strings.ReplaceAll(out, `<svg`, fmt.Sprintf(`<svg viewBox="0 0 %d %d"`, c.GetWidth(), c.GetHeight()))
 		r.Output = template.HTML(out)
 	default:
