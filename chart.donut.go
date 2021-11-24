@@ -1,8 +1,8 @@
 package ktc
 
 import (
+	"github.com/kyoto-framework/kyoto"
 	"github.com/wcharczuk/go-chart/v2"
-	"github.com/yuriizinets/kyoto"
 )
 
 type ChartDonut struct {

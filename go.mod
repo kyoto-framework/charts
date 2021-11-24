@@ -1,10 +1,10 @@
-module github.com/yuriizinets/kyoto-charts
+module github.com/kyoto-framework/charts
 
 go 1.17
 
 require (
 	github.com/wcharczuk/go-chart/v2 v2.1.0
-	github.com/yuriizinets/kyoto v0.0.0-20211017170019-16887ac790b5
+	github.com/kyoto-framework/kyoto v0.0.0-20211017170019-16887ac790b5
 )
 
 require (

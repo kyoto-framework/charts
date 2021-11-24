@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/kyoto-framework/kyoto"
 	"github.com/wcharczuk/go-chart/v2"
-	"github.com/yuriizinets/kyoto"
 )
 
 type TestChartSeriesPage struct {

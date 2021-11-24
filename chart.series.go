@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/kyoto-framework/kyoto"
 	"github.com/wcharczuk/go-chart/v2"
 	"github.com/yuriizinets/go-common"
-	"github.com/yuriizinets/kyoto"
 )
 
 type ChartSeries struct {

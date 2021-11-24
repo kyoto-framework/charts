@@ -10,7 +10,7 @@ Kyoto charts are using `go-chart` under the hood to generate charts on server si
 
 ## Installation
 
-- Install go package `go get github.com/yuriizinets/kyoto-charts`
+- Install go package `go get github.com/kyoto-framework/charts`
 - Copy files from `templates` into your templates folder (you can ignore test files)
 
 ## Features
@@ -24,8 +24,8 @@ Kyoto charts are using `go-chart` under the hood to generate charts on server si
 package main
 
 import (
-    "github.com/yuriizinets/kyoto"
-    ktc "github.com/yuriizinets/kyoto-charts"
+    "github.com/kyoto-framework/kyoto"
+    ktc "github.com/kyoto-framework/charts"
 )
 
 type PageIndex struct {

@@ -4,7 +4,7 @@ import (
 	"html/template"
 	"testing"
 
-	"github.com/yuriizinets/kyoto"
+	"github.com/kyoto-framework/kyoto"
 )
 
 type TestChartBarsPage struct {
